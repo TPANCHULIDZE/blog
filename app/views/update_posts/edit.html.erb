@@ -1,0 +1,34 @@
+<h1>Update <%= @post.title %> post </h1>
+<p> fill only that tabs which want to update</p>
+
+<%= form_with model: @post, url: update_post_path(@post),  local: true, data: { turbo: false }   do |form| %>
+  
+  <% if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div> <%= message %> </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :author, value: Current.user.username  %>
+    <%= form.hidden_field :author, class: "form-control", value: Current.user.username %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control", value: @post.title %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body %>
+    <%= form.text_field :body, class: "form-control", value: @post.body %>
+  </div>
+
+
+  <div>
+    <%= form.submit "update", class: "btn btn-primary" %>
+  </div>
+<% end %>
+

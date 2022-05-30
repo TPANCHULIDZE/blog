@@ -1,0 +1,17 @@
+<h1><%= Current.user.username %>'s posts</h1>
+
+<ul class="list-group">
+	<% @posts.each do |post| %> 
+  	<li class="list-group-item">
+  	<%= link_to post.title, show_post_path(post), class: "btn btn-dark"%> 
+  	<%= button_to "Edit", update_post_path(post), method: :get, class: "btn btn-primary"%> 
+
+  	<%= button_to "Delete", delete_post_path(post), method: :delete, class: "btn btn-danger"%>
+  	</li>
+  <% end %>	
+</ul>
+
+<div>
+	<br>
+	<%= link_to "new post", create_post_path, class: "btn btn-success" %>
+</div>

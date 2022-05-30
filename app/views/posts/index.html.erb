@@ -1,0 +1,7 @@
+<h1>posts</h1>
+
+<ul class="list-group list-group-flush">
+	<% @posts.each do |post| %> 
+  	<li class="list-group-item"><%= link_to post.title, show_post_path(post), class: "nav-link" %></li>
+  <% end %>	
+</ul>
