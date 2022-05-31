@@ -1,4 +1,6 @@
 class UpdatePostsController < ApplicationController
+  before_action :require_user_loged_in!
+  
   def edit
     @post = Post.find_by(id: params[:format])
   end

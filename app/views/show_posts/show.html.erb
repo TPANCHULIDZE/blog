@@ -1,12 +1,26 @@
-<% if @post %>
-	<h1><%= @post.title %></h1>
-	<br>
-	<h2>Author:  <%= @post.author %></h2>
-	<br>
+
+<div class="container">
+  <% if @post %>
+  <div>
+  	<h1 align="center"><strong><%= @post.title %></strong> </h1>
+  </div>
+
 	<div>
-		<h3>description: <p> <%= @post.body %> </p></h3>
+		<h2 align="center">Author:  <p class="lead"><%= @post.author %></p> </h2>
 	</div>
+
+	<div class="text-center">
+		<h2>Description</h2>
+ 	 <p class="lead"> <%= @post.body %></p>
+	</div>
+
 <% end %>
+</div>
+
+
+<%= render partial: "show_comments" %>
+
+
 
 
 

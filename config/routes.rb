@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
+
   delete "logout", to: "sessions#destroy"
+
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
+
   get "password", to: "passwords#edit"
   patch "password", to: "passwords#update"
 
@@ -22,5 +25,8 @@ Rails.application.routes.draw do
   patch "update_post", to: "update_posts#update"
 
   delete "delete_post", to: "destroy_posts#destroy"
+
+  get "create_comments", to: "create_comments#new"
+  post "create_comments", to: "create_comments#create"
   
 end

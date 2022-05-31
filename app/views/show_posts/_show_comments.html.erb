@@ -1,0 +1,44 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+      <div class="card-body p-4">
+        <div class="form-outline mb-4">
+          <%= form_with model: @post.comments, url: create_comments_path(@post), local: true, data: { turbo: false }  do |form| %>
+						  <p>
+						    <% form.label :user_id %><br>
+						    <%= form.hidden_field :user_id, value: session[:user_id], class: "form-control" %>
+						  </p>
+						  <p>
+						    <% form.label :description %><br>
+						    <%= form.text_area :description, class: "form-control", placeholder: "new comment" %>
+						  </p>
+						  <p>
+						    <%= form.submit "create", class: "btn btn-primary" %>
+						  </p>
+					<% end %>
+        </div>
+
+        <% @post.comments.each do |comment| %>
+	        <div class="card mb-4">
+	          <div class="card-body">
+	            <p class="form-control">
+	            	<%= comment.description %>
+	            </p>
+
+	            <div class="d-flex justify-content-between">
+	              <div class="d-flex flex-row align-items-center">
+	                <p class="small mb-0 ms-2">
+	                	<% author = User.find_by(id: comment.user_id) %>
+	                 <strong> Author: <%= author.username  %></strong>
+	                </p>
+	              </div>
+	             
+	            </div>
+	          </div>
+	        </div>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
