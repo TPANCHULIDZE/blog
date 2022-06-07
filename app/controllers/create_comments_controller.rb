@@ -1,11 +1,18 @@
 class CreateCommentsController < ApplicationController
+  before_action :require_user_loged_in!
+
   def new
   end
 
   def create
     @post = Post.find_by(id: params[:format])
     @comment = @post.comments.new(comments_params)
-    @comment.save
+    
+    if @comment.save
+      flash[:notice] = "create comment"
+    else
+      flash[:alert] = "comment don't create"
+    end
 
     redirect_to show_post_path(@post)
   end
@@ -13,7 +20,6 @@ class CreateCommentsController < ApplicationController
   private
 
   def comments_params
-    # params[:comment][:user_id] = session[:user_id]
     params.require(:comment).permit(:description, :user_id)
   end
 end

@@ -6,10 +6,11 @@ class CreatePostsController < ApplicationController
   end
 
   def create
-    @post = Current.user.posts.create(posts_params)
+    @post = Current.user.posts.new(posts_params)
     if @post.save
       redirect_to user_posts_path, notice: "post is create"
     else
+      flash[:alert] = "invalid input"
       render :new
     end
   end
